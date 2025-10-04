@@ -11,6 +11,7 @@ import { diagramCommand } from './commands/diagram';
 import { naturalLanguageCommand } from './commands/nl';
 import { config } from './utils/config';
 import { Logger } from './utils/logger';
+import pkg from '../package.json';
 
 const program = new Command();
 
@@ -28,7 +29,7 @@ function parseResize(resizeStr: string | undefined): { width?: number; height?: 
 program
   .name('nb')
   .description('nanobanana - AI-powered image generation CLI using Gemini')
-  .version('0.1.0');
+  .version(pkg.version, '-v, -V, --version', 'output the version number');
 
 program
   .command('generate <prompt>')
@@ -207,6 +208,7 @@ program
 // Check if user is requesting help or version (don't require API key for these)
 const isHelpOrVersion = process.argv.includes('-h') ||
   process.argv.includes('--help') ||
+  process.argv.includes('-v') ||
   process.argv.includes('-V') ||
   process.argv.includes('--version');
 
