@@ -250,16 +250,6 @@ bun run start
 bun run typecheck
 ```
 
-## Publishing to npm
-
-```bash
-# Login to npm (one-time setup)
-bun login
-
-# Publish to npm
-bun publish --access public
-```
-
 ## Project Structure
 
 ```
