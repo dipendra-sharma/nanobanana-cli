@@ -160,16 +160,31 @@ output/
 
 ## Publishing
 
-CI/CD via GitHub Actions:
+**Automated CI/CD via GitHub Actions:**
 - `.github/workflows/ci.yml`: Type check + build on PR/push
-- `.github/workflows/publish.yml`: Automated npm publish on version tags
+- `.github/workflows/publish.yml`: **Automated npm publish triggered by version tags**
 
-Manual publishing:
+**IMPORTANT**: Publishing is fully automated. Do NOT run `npm publish` manually.
+
+### Release Process:
 ```bash
-# Bump version in package.json
-bun run prepublishOnly  # typecheck + build
-npm publish             # use npm (bun publish has issues)
+# 1. Update version in package.json
+# 2. Commit changes
+git add package.json README.md
+git commit -m "chore: release v0.x.x"
+
+# 3. Create and push version tag (triggers auto-publish)
+git tag v0.x.x
+git push origin main
+git push origin v0.x.x
+
+# GitHub Actions will automatically:
+# - Run typecheck and build
+# - Publish to npm registry
+# - Create GitHub release
 ```
+
+**Never manually publish** - The CI pipeline handles everything when you push a version tag.
 
 ## Common Development Scenarios
 

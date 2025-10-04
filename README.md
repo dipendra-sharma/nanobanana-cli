@@ -1,6 +1,7 @@
-# 🎨 nb (nanobanana)
+# nb (nanobanana)
 
 > **Free AI-powered image generation from your terminal**
+>
 > Generate, edit, and enhance images using Google's Gemini API with simple natural language commands.
 
 [![npm version](https://img.shields.io/npm/v/nanobanana-cli.svg)](https://www.npmjs.com/package/nanobanana-cli)
@@ -9,20 +10,20 @@
 
 ---
 
-## ✨ Why nb?
+## Why nb?
 
-- **🆓 Free to Use** - Leverage Google's Gemini API (free tier available)
-- **⚡ Lightning Fast** - Powered by Gemini 2.5 Flash Image model
-- **🎯 8 Specialized Commands** - Generate, edit, restore, icons, patterns, stories, diagrams, and more
-- **🖼️ Smart Image Processing** - Built-in WebP conversion, compression, and resizing
-- **💬 Natural Language** - Just describe what you want in plain English
-- **🎨 10+ Art Styles** - Photorealistic, watercolor, anime, pixel-art, and more
-- **📐 Multiple Aspect Ratios** - Perfect for any use case from social media to print
-- **⚙️ Zero Config** - Just add your API key and start creating
+- **Free to Use** - Leverage Google's Gemini API (free tier available)
+- **Lightning Fast** - Powered by Gemini 2.5 Flash Image model
+- **8 Specialized Commands** - Generate, edit, restore, icons, patterns, stories, diagrams, and more
+- **Smart Image Processing** - Built-in WebP conversion, compression, and resizing
+- **Natural Language** - Just describe what you want in plain English
+- **10+ Art Styles** - Photorealistic, watercolor, anime, pixel-art, and more
+- **Multiple Aspect Ratios** - Perfect for any use case from social media to print
+- **Zero Config** - Just add your API key and start creating
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Try it instantly (no installation required)
 
@@ -46,7 +47,7 @@ nb generate "cyberpunk city at night"
 
 ---
 
-## 📦 Installation & Setup
+## Installation & Setup
 
 ### 1. Get Your Free Gemini API Key
 
@@ -75,9 +76,9 @@ Your image will be saved in the `./output` folder automatically!
 
 ---
 
-## 🎨 Commands & Examples
+## Commands & Examples
 
-### 🖼️ Generate Images
+### Generate Images
 
 Create stunning AI images from text descriptions with style options and aspect ratios.
 
@@ -115,7 +116,7 @@ nb generate "cyberpunk street scene at night" \
 
 ---
 
-### ✏️ Edit Images
+### Edit Images
 
 Transform existing images with natural language instructions.
 
@@ -144,7 +145,7 @@ nb edit photo.jpg "enhance colors and contrast" \
 
 ---
 
-### 🔧 Restore & Enhance Images
+### Restore & Enhance Images
 
 Bring old or low-quality images back to life.
 
@@ -167,7 +168,7 @@ nb restore old-picture.jpg \
 
 ---
 
-### 🎯 Generate App Icons
+### Generate App Icons
 
 Create professional app icons in multiple sizes instantly.
 
@@ -192,7 +193,7 @@ Perfect for: iOS apps, Android apps, web favicons, PWAs
 
 ---
 
-### 🌀 Create Seamless Patterns
+### Create Seamless Patterns
 
 Generate tileable patterns and textures for backgrounds and designs.
 
@@ -222,7 +223,7 @@ Great for: Website backgrounds, textile design, game assets, social media
 
 ---
 
-### 📖 Visual Storytelling
+### Visual Storytelling
 
 Generate sequential images for comics, storyboards, or presentations.
 
@@ -248,7 +249,7 @@ Perfect for: Storyboards, comics, presentations, social media stories
 
 ---
 
-### 📊 Technical Diagrams
+### Technical Diagrams
 
 Create diagrams, flowcharts, and technical visualizations.
 
@@ -280,7 +281,7 @@ Perfect for: Documentation, presentations, planning, teaching
 
 ---
 
-### 💬 Natural Language Interface
+### Natural Language Interface
 
 Can't remember the exact command? Just describe what you want!
 
@@ -294,7 +295,7 @@ nb "photorealistic mountain scenery at golden hour"
 
 ---
 
-## 🎯 Real-World Use Cases
+## Real-World Use Cases
 
 ### For Content Creators
 - **Blog Graphics**: `nb generate "modern minimalist blog header" --aspect-ratio 21:9`
@@ -318,7 +319,7 @@ nb "photorealistic mountain scenery at golden hour"
 
 ---
 
-## 🔧 Image Processing Options
+## Image Processing Options
 
 All commands support advanced image processing for optimal file sizes and quality.
 
@@ -356,7 +357,7 @@ nb generate "product photo" --resize 512x512 --format jpg --quality 75
 
 ---
 
-## 📂 Output & Metadata
+## Output & Metadata
 
 All generated images are automatically saved to `./output` (customizable with `-o` flag).
 
@@ -379,7 +380,7 @@ nb generate "logo" --output ./my-images
 
 ---
 
-## 💡 Pro Tips & Tricks
+## Pro Tips & Tricks
 
 ### Batch Generation
 ```bash
@@ -413,29 +414,35 @@ nb generate "cyberpunk samurai" --style "digital-art"
 
 ---
 
-## ❓ FAQ
+## FAQ
 
 **Q: Is Gemini API really free?**
+
 A: Yes! Google offers a generous free tier for the Gemini API. Perfect for personal projects and testing.
 
 **Q: What image sizes can I generate?**
+
 A: The default size is 1024x1024, but you can resize to any dimension up to 4096x4096 using the `--resize` flag.
 
 **Q: Can I use generated images commercially?**
+
 A: Check [Google's Gemini API Terms of Service](https://ai.google.dev/terms) for the latest usage guidelines.
 
 **Q: How do I update to the latest version?**
+
 A: Run `npm update -g nanobanana-cli` or `bun update -g nanobanana-cli`
 
 **Q: Where are my images saved?**
+
 A: By default in `./output` folder. Use `-o` flag to change the location.
 
 **Q: Can I use this without installing?**
+
 A: Yes! Use `npx nanobanana-cli [command]` to run without global installation.
 
 ---
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### API Key Not Found
 ```bash
@@ -468,24 +475,24 @@ npm rebuild sharp
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 We welcome contributions! Here's how you can help:
 
-- 🐛 **Report bugs** at [GitHub Issues](https://github.com/dipendra-sharma/nanobanana-cli/issues)
-- 💡 **Suggest features** or improvements
-- 📖 **Improve documentation**
-- ⭐ **Star the repo** if you find it useful!
+- Report bugs at [GitHub Issues](https://github.com/dipendra-sharma/nanobanana-cli/issues)
+- Suggest features or improvements
+- Improve documentation
+- Star the repo if you find it useful!
 
 ---
 
-## 📄 License
+## License
 
 MIT © [Dipendra Sharma](https://github.com/dipendra-sharma)
 
 ---
 
-## 🙏 Acknowledgements
+## Acknowledgements
 
 This project was inspired by [nanobanana](https://github.com/gemini-cli-extensions/nanobanana) by the Gemini CLI Extensions community.
 
@@ -499,16 +506,16 @@ Developed with assistance from [Claude Code](https://claude.com/claude-code), An
 
 ---
 
-## 🌟 Show Your Support
+## Show Your Support
 
 If you find **nb** useful, please:
-- ⭐ Star this repo on [GitHub](https://github.com/dipendra-sharma/nanobanana-cli)
-- 📦 Share it on [npm](https://www.npmjs.com/package/nanobanana-cli)
-- 🐦 Tweet about it
-- 💬 Tell your friends!
+- Star this repo on [GitHub](https://github.com/dipendra-sharma/nanobanana-cli)
+- Share it on [npm](https://www.npmjs.com/package/nanobanana-cli)
+- Tweet about it
+- Tell your friends!
 
 ---
 
-**Made with ❤️ for developers, designers, and creators**
+**Made with care for developers, designers, and creators**
 
 [Report Bug](https://github.com/dipendra-sharma/nanobanana-cli/issues) · [Request Feature](https://github.com/dipendra-sharma/nanobanana-cli/issues) · [Documentation](https://github.com/dipendra-sharma/nanobanana-cli#readme)
