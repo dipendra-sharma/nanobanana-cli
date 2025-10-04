@@ -1,0 +1,49 @@
+# Source files
+src/
+tsconfig.json
+
+# Development
+.env
+.env.example
+.env.local
+
+# Build
+node_modules/
+
+# Testing
+coverage/
+.nyc_output/
+
+# CI/CD
+.github/
+
+# Documentation
+CONTRIBUTING.md
+CODE_OF_CONDUCT.md
+SECURITY.md
+
+# Generated output
+output/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Git
+.git/
+.gitignore
+
+# Logs
+*.log
+npm-debug.log*
+
+# Misc
+.claude/
+bun.lockb
