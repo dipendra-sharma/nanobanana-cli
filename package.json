@@ -1,6 +1,6 @@
 {
   "name": "nanobanana-cli",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Free AI-powered image generation CLI using Google's Gemini API. Generate, edit, restore images, create icons, patterns, diagrams and more with natural language commands.",
   "type": "module",
   "bin": {
