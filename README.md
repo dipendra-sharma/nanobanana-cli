@@ -1,308 +1,514 @@
-# nb (nanobanana)
+# 🎨 nb (nanobanana)
 
-AI-powered image generation CLI using Google's Gemini API. Create, edit, and enhance images using natural language.
+> **Free AI-powered image generation from your terminal**
+> Generate, edit, and enhance images using Google's Gemini API with simple natural language commands.
 
-## Features
+[![npm version](https://img.shields.io/npm/v/nanobanana-cli.svg)](https://www.npmjs.com/package/nanobanana-cli)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Powered by Gemini](https://img.shields.io/badge/Powered%20by-Google%20Gemini-blue.svg)](https://ai.google.dev/)
 
-### Core Commands
-- **Generate** - Create images from text prompts with style variations
-- **Edit** - Modify existing images with natural language instructions
-- **Restore** - Enhance and restore old or low-quality images
-- **Icon** - Generate app icons in multiple sizes
-- **Pattern** - Create seamless patterns and textures
-- **Story** - Generate sequential images for visual storytelling
-- **Diagram** - Create technical diagrams and flowcharts
-- **Natural Language** - Flexible interface for any image generation task
+---
 
-### Image Processing
-- **WebP Conversion** - Convert output to WebP format for smaller file sizes
-- **Compression** - Adjust image quality (1-100) for optimal file size
-- **Resize** - Resize images to specific dimensions (e.g., 512x512)
+## ✨ Why nb?
 
-## Installation
+- **🆓 Free to Use** - Leverage Google's Gemini API (free tier available)
+- **⚡ Lightning Fast** - Powered by Gemini 2.5 Flash Image model
+- **🎯 8 Specialized Commands** - Generate, edit, restore, icons, patterns, stories, diagrams, and more
+- **🖼️ Smart Image Processing** - Built-in WebP conversion, compression, and resizing
+- **💬 Natural Language** - Just describe what you want in plain English
+- **🎨 10+ Art Styles** - Photorealistic, watercolor, anime, pixel-art, and more
+- **📐 Multiple Aspect Ratios** - Perfect for any use case from social media to print
+- **⚙️ Zero Config** - Just add your API key and start creating
+
+---
+
+## 🚀 Quick Start
+
+### Try it instantly (no installation required)
 
 ```bash
-bun install
+# Generate your first AI image in seconds
+npx nanobanana-cli generate "sunset over mountains"
 ```
 
-## Setup
-
-1. Get your Gemini API key from [Google AI Studio](https://aistudio.google.com/app/apikey)
-
-2. Set your API key as an environment variable:
+### Install globally for faster access
 
 ```bash
+# Using npm
+npm install -g nanobanana-cli
+
+# Using Bun (recommended)
+bun install -g nanobanana-cli
+
+# Then use the short command
+nb generate "cyberpunk city at night"
+```
+
+---
+
+## 📦 Installation & Setup
+
+### 1. Get Your Free Gemini API Key
+
+Visit [Google AI Studio](https://aistudio.google.com/app/apikey) and get your free API key (no credit card required).
+
+### 2. Set Your API Key
+
+```bash
+# On macOS/Linux
 export GEMINI_API_KEY=your_api_key_here
+
+# On Windows (PowerShell)
+$env:GEMINI_API_KEY="your_api_key_here"
+
+# Or add to your shell profile (~/.bashrc, ~/.zshrc, etc.)
+echo 'export GEMINI_API_KEY=your_api_key_here' >> ~/.zshrc
 ```
 
-Or create a `.env` file:
+### 3. Create Your First Image
 
 ```bash
-cp .env.example .env
-# Edit .env and add your API key
+nb generate "a majestic dragon flying over a castle"
 ```
 
-## Usage
+Your image will be saved in the `./output` folder automatically!
 
-### Generate Images
+---
 
-Create images from text prompts:
+## 🎨 Commands & Examples
+
+### 🖼️ Generate Images
+
+Create stunning AI images from text descriptions with style options and aspect ratios.
 
 ```bash
-# Basic generation
-bun run dev generate "sunset over mountains"
+# Basic image generation
+nb generate "sunset over mountains"
 
-# Multiple images
-bun run dev generate "futuristic city" --count 4
+# Generate multiple images at once
+nb generate "futuristic robot" --count 4
 
-# With style
-bun run dev generate "forest landscape" --style watercolor
+# Apply artistic styles
+nb generate "forest landscape" --style watercolor
+nb generate "city street" --style anime
+nb generate "portrait" --style photorealistic
 
-# Custom aspect ratio
-bun run dev generate "portrait of a cat" --aspect-ratio 9:16
+# Custom aspect ratios for different platforms
+nb generate "mobile wallpaper" --aspect-ratio 9:16
+nb generate "youtube thumbnail" --aspect-ratio 16:9
+nb generate "instagram post" --aspect-ratio 1:1
 
-# All options
-bun run dev generate "cyberpunk street scene" \
+# Advanced: combine all options
+nb generate "cyberpunk street scene at night" \
   --count 3 \
   --style digital-art \
   --aspect-ratio 16:9 \
-  --seed 42 \
-  --output ./my-images
+  --format webp \
+  --quality 85
+```
 
-# With image processing
-bun run dev generate "mountain landscape" \
+**Available Styles:**
+`photorealistic`, `watercolor`, `oil-painting`, `anime`, `sketch`, `digital-art`, `3d-render`, `pixel-art`, `minimalist`, `abstract`
+
+**Aspect Ratios:**
+`1:1`, `16:9`, `9:16`, `4:3`, `3:4`, `21:9`, `9:21`, `3:2`, `2:3`
+
+---
+
+### ✏️ Edit Images
+
+Transform existing images with natural language instructions.
+
+```bash
+# Add elements to images
+nb edit photo.jpg "add a rainbow in the sky"
+nb edit landscape.png "add snow to the mountains"
+
+# Remove unwanted elements
+nb edit photo.jpg "remove the person in the background"
+nb edit image.png "remove watermark"
+
+# Change image style
+nb edit photo.jpg "make it look like a watercolor painting"
+nb edit portrait.png "convert to black and white with vintage film grain"
+
+# Advanced editing with masks
+nb edit input.png "change the sky to sunset" --mask sky-mask.png
+
+# Save optimized for web
+nb edit photo.jpg "enhance colors and contrast" \
+  --format webp \
+  --quality 80 \
+  --resize 1920x1080
+```
+
+---
+
+### 🔧 Restore & Enhance Images
+
+Bring old or low-quality images back to life.
+
+```bash
+# Basic image restoration
+nb restore old-photo.jpg
+
+# High-quality enhancement
+nb restore vintage-photo.jpg --quality high
+
+# Denoise and enhance
+nb restore noisy-image.png --denoise
+
+# Restore and optimize
+nb restore old-picture.jpg \
+  --quality high \
+  --format webp \
+  --image-quality 90
+```
+
+---
+
+### 🎯 Generate App Icons
+
+Create professional app icons in multiple sizes instantly.
+
+```bash
+# Standard icon set
+nb icon "minimalist rocket logo"
+
+# Custom sizes
+nb icon "coffee cup app icon" --sizes 64,128,256,512
+
+# All common sizes
+nb icon "music note logo" --sizes 16,32,64,128,256,512,1024
+
+# Generate as WebP for modern platforms
+nb icon "mountain peak logo" \
+  --sizes 128,256,512 \
+  --format webp \
+  --quality 90
+```
+
+Perfect for: iOS apps, Android apps, web favicons, PWAs
+
+---
+
+### 🌀 Create Seamless Patterns
+
+Generate tileable patterns and textures for backgrounds and designs.
+
+```bash
+# Simple pattern
+nb pattern "geometric hexagons"
+
+# Custom color palette
+nb pattern "floral design" --colors "pink,lavender,white"
+
+# Control pattern density
+nb pattern "stars and moons" --density high
+nb pattern "subtle dots" --density low
+
+# Non-tileable backgrounds
+nb pattern "abstract watercolor splash" --tileable false
+
+# Web-optimized pattern
+nb pattern "circuit board design" \
+  --colors "green,black" \
   --format webp \
   --quality 75 \
   --resize 512x512
 ```
 
-**Styles:** `photorealistic`, `watercolor`, `oil-painting`, `anime`, `sketch`, `digital-art`, `3d-render`, `pixel-art`, `minimalist`, `abstract`
+Great for: Website backgrounds, textile design, game assets, social media
 
-**Aspect Ratios:** `1:1`, `16:9`, `9:16`, `4:3`, `3:4`, `21:9`, `9:21`, `3:2`, `2:3`
+---
 
-**Image Processing Options (available on all commands):**
-- `--format <format>` - Output format: `png`, `jpg`, `webp` (default: png)
-- `--quality <number>` - Image quality 1-100 (default: 90)
-- `--resize <size>` - Resize to dimensions like `512x512` or `1024x768`
+### 📖 Visual Storytelling
 
-### Edit Images
-
-Modify existing images:
-
-```bash
-# Add elements
-bun run dev edit image.png "add a rainbow in the sky" --operation add
-
-# Remove elements
-bun run dev edit photo.jpg "remove the person" --operation remove
-
-# Modify style
-bun run dev edit picture.png "make it look like a watercolor painting"
-
-# With mask
-bun run dev edit input.png "change the background" --mask mask.png
-
-# Save as WebP with compression
-bun run dev edit photo.jpg "make it vintage" --format webp --quality 80
-```
-
-### Restore Images
-
-Enhance and restore images:
-
-```bash
-# Basic restoration
-bun run dev restore old-photo.jpg
-
-# High quality enhancement
-bun run dev restore image.png --quality high
-
-# Focus on noise reduction
-bun run dev restore noisy.jpg --denoise
-
-# Restore and convert to WebP
-bun run dev restore old-photo.jpg --format webp --image-quality 85
-```
-
-### Generate Icons
-
-Create icons in multiple sizes:
-
-```bash
-# Generate standard icon sizes
-bun run dev icon "coffee cup logo"
-
-# Custom sizes
-bun run dev icon "app icon" --sizes 64,128,256,512
-
-# All sizes
-bun run dev icon "rocket ship" --sizes 16,32,64,128,256,512,1024
-
-# Generate WebP icons
-bun run dev icon "app logo" --sizes 128,256,512 --format webp --quality 85
-```
-
-### Create Patterns
-
-Generate seamless patterns:
-
-```bash
-# Basic pattern
-bun run dev pattern "geometric hexagons"
-
-# With color palette
-bun run dev pattern "floral design" --colors "pink,lavender,white"
-
-# Control density
-bun run dev pattern "stars" --density high
-
-# Non-tileable
-bun run dev pattern "abstract waves" --tileable false
-```
-
-### Generate Stories
-
-Create sequential images:
+Generate sequential images for comics, storyboards, or presentations.
 
 ```bash
 # 4-scene story
-bun run dev story "a seed growing into a tree" --scenes 4
+nb story "a seed growing into a blooming flower"
 
-# Custom aspect ratio
-bun run dev story "day to night transition" --scenes 5 --aspect-ratio 21:9
+# Custom scene count
+nb story "day to night transition over a city" --scenes 6
 
-# Cinematic story
-bun run dev story "hero's journey" --scenes 6 --aspect-ratio 16:9
+# Cinematic widescreen
+nb story "hero's journey through mystical lands" \
+  --scenes 5 \
+  --aspect-ratio 21:9
+
+# Instagram story format
+nb story "morning coffee routine" \
+  --scenes 4 \
+  --aspect-ratio 9:16
 ```
 
-### Create Diagrams
+Perfect for: Storyboards, comics, presentations, social media stories
 
-Generate technical diagrams:
+---
+
+### 📊 Technical Diagrams
+
+Create diagrams, flowcharts, and technical visualizations.
 
 ```bash
-# Flowchart
-bun run dev diagram "user authentication flow" --type flowchart
+# Flowcharts
+nb diagram "user authentication flow" --type flowchart
+nb diagram "checkout process with payment gateway" --type flowchart
 
-# Architecture diagram
-bun run dev diagram "microservices architecture" --type architecture
+# Architecture diagrams
+nb diagram "microservices architecture with API gateway" --type architecture
+nb diagram "cloud infrastructure on AWS" --type architecture
 
-# Network diagram
-bun run dev diagram "home network setup" --type network
+# Network diagrams
+nb diagram "home office network setup" --type network
 
-# Other types: sequence, erd, mindmap
-bun run dev diagram "database schema for e-commerce" --type erd
+# Database schemas
+nb diagram "e-commerce database schema" --type erd
+
+# Mind maps
+nb diagram "project planning brainstorm" --type mindmap
+
+# Sequence diagrams
+nb diagram "API request response cycle" --type sequence
 ```
 
-### Natural Language Interface
+**Diagram Types:** `flowchart`, `sequence`, `architecture`, `network`, `erd`, `mindmap`
 
-Use natural language for any task:
+Perfect for: Documentation, presentations, planning, teaching
+
+---
+
+### 💬 Natural Language Interface
+
+Can't remember the exact command? Just describe what you want!
 
 ```bash
-# Simple generation
-bun run dev "create a beautiful sunset"
-
-# Multiple images
-bun run dev "futuristic robot" --count 3
-
-# Complex requests
-bun run dev "photorealistic image of a mountain landscape at golden hour"
+# The AI will figure out the best approach
+nb "create a beautiful sunset landscape"
+nb "make a logo with a rocket ship"
+nb "generate 3 images of a futuristic robot"
+nb "photorealistic mountain scenery at golden hour"
 ```
 
-## Output
+---
 
-All generated images are saved to `./output` by default (customizable with `-o` flag).
+## 🎯 Real-World Use Cases
+
+### For Content Creators
+- **Blog Graphics**: `nb generate "modern minimalist blog header" --aspect-ratio 21:9`
+- **Social Media**: `nb generate "engaging instagram post about coffee" --aspect-ratio 1:1`
+- **YouTube Thumbnails**: `nb generate "exciting tech review thumbnail" --aspect-ratio 16:9`
+
+### For Developers
+- **App Icons**: `nb icon "clean todo app icon" --sizes 256,512,1024`
+- **Placeholder Images**: `nb generate "user avatar placeholder" --count 10`
+- **UI Mockups**: `nb generate "modern dashboard interface" --style minimalist`
+
+### For Designers
+- **Concept Art**: `nb generate "sci-fi vehicle design" --style digital-art --count 5`
+- **Patterns**: `nb pattern "art deco geometric" --colors "gold,black,white"`
+- **Mood Boards**: `nb generate "cozy cafe interior" --count 6 --style photorealistic`
+
+### For Educators
+- **Diagrams**: `nb diagram "water cycle" --type flowchart`
+- **Visual Aids**: `nb generate "ancient Roman architecture" --style photorealistic`
+- **Storyboards**: `nb story "photosynthesis process" --scenes 4`
+
+---
+
+## 🔧 Image Processing Options
+
+All commands support advanced image processing for optimal file sizes and quality.
+
+### Format Conversion
+
+```bash
+# WebP (smallest, best for web)
+nb generate "landscape" --format webp --quality 75
+
+# JPEG (balanced)
+nb generate "portrait" --format jpg --quality 85
+
+# PNG (lossless, largest)
+nb generate "logo" --format png --quality 90
+```
+
+### Resize Images
+
+```bash
+# Resize to specific dimensions
+nb generate "wallpaper" --resize 1920x1080
+
+# Social media optimized
+nb generate "instagram post" --resize 1080x1080 --format webp --quality 80
+
+# Thumbnail generation
+nb generate "product photo" --resize 512x512 --format jpg --quality 75
+```
+
+### File Size Examples
+
+- **Original PNG** (1024x1024): ~1.0 MB
+- **WebP Quality 75** (512x512): ~27 KB (97% smaller!)
+- **JPEG Quality 80** (1024x1024): ~100 KB
+
+---
+
+## 📂 Output & Metadata
+
+All generated images are automatically saved to `./output` (customizable with `-o` flag).
 
 Each image includes:
-- Image file in your chosen format (PNG, JPG, or WebP)
-- Metadata JSON file with prompt, model, timestamp, and parameters
+- **Image file**: PNG, JPG, or WebP format
+- **Metadata JSON**: Contains prompt, model info, timestamp, and generation parameters
 
-### Image Processing Benefits
+```
+output/
+├── nb-generate-2025-10-04T14-30-15-1.png
+├── nb-generate-2025-10-04T14-30-15-1.json
+├── nb-edit-2025-10-04T14-32-20.webp
+└── nb-edit-2025-10-04T14-32-20.json
+```
 
-**WebP Format:**
-- 25-35% smaller file sizes compared to PNG
-- Excellent quality retention
-- Perfect for web use
-
-**Example file sizes:**
-- Original PNG (1024x1024): ~1.0 MB
-- WebP quality 75 (512x512): ~27 KB (97% smaller!)
-- JPG quality 80: ~100 KB
-
-**Use Cases:**
-- `--format webp --quality 75` - Web images, fast loading
-- `--format jpg --quality 85` - Photos, balanced quality
-- `--format png --quality 90` - High quality, lossless
-- `--resize 512x512` - Thumbnails, previews, social media
-
-## Development
-
+Customize output directory:
 ```bash
-# Run in development mode
-bun run dev [command]
-
-# Build for production
-bun run build
-
-# Run production build
-bun run start
-
-# Type check
-bun run typecheck
+nb generate "logo" --output ./my-images
 ```
 
-## Project Structure
+---
 
-```
-nb/
-├── src/
-│   ├── commands/       # Command implementations
-│   ├── lib/           # Core libraries (Gemini client, file handler, etc.)
-│   ├── types/         # TypeScript type definitions
-│   ├── utils/         # Utilities (config, logger, validators)
-│   └── index.ts       # CLI entry point
-├── output/            # Generated images (created automatically)
-├── package.json
-└── tsconfig.json
+## 💡 Pro Tips & Tricks
+
+### Batch Generation
+```bash
+# Generate multiple variations
+nb generate "logo concept" --count 10 --variations
 ```
 
-## API Models
+### Consistent Results
+```bash
+# Use seed for reproducible images
+nb generate "character design" --seed 42
+```
 
-This CLI uses:
-- **Gemini 2.5 Flash Image** (gemini-2.5-flash-image) - For image generation and editing
+### Web Optimization
+```bash
+# Perfect for web - small size, high quality
+nb generate "hero image" \
+  --format webp \
+  --quality 75 \
+  --resize 1920x1080
+```
 
-## Dependencies
+### Creative Prompts
+```bash
+# Be specific for better results
+nb generate "a serene Japanese garden with cherry blossoms, koi pond, and stone lanterns at sunset, photorealistic, high detail"
 
-### Runtime
-- **Bun** - Fast TypeScript runtime
-- **@google/genai** - Official Google Gen AI SDK for Gemini API
-- **sharp** - High-performance image processing (WebP, resize, compression)
-- **Commander.js** - CLI framework
-- **ora** - Terminal spinners
-- **chalk** - Terminal styling
+# Combine styles
+nb generate "cyberpunk samurai" --style "digital-art"
+```
 
-### Image Processing
-The Sharp library enables advanced image processing:
-- Format conversion (PNG, JPG, WebP)
-- Quality compression (1-100)
-- Resizing with aspect ratio preservation
-- Optimized for performance using libvips
+---
 
-## License
+## ❓ FAQ
 
-MIT
+**Q: Is Gemini API really free?**
+A: Yes! Google offers a generous free tier for the Gemini API. Perfect for personal projects and testing.
 
-## Acknowledgements
+**Q: What image sizes can I generate?**
+A: The default size is 1024x1024, but you can resize to any dimension up to 4096x4096 using the `--resize` flag.
 
-This project was inspired by and builds upon the excellent [nanobanana](https://github.com/gemini-cli-extensions/nanobanana) Gemini CLI extension by the Gemini CLI Extensions community. Many thanks to the original creators for pioneering AI-powered image generation in the command line.
+**Q: Can I use generated images commercially?**
+A: Check [Google's Gemini API Terms of Service](https://ai.google.dev/terms) for the latest usage guidelines.
 
-This CLI tool was developed with assistance from [Claude Code](https://claude.com/claude-code), Anthropic's AI-powered coding assistant, which helped accelerate development and ensure best practices.
+**Q: How do I update to the latest version?**
+A: Run `npm update -g nanobanana-cli` or `bun update -g nanobanana-cli`
 
-## Credits
+**Q: Where are my images saved?**
+A: By default in `./output` folder. Use `-o` flag to change the location.
 
-Built with:
+**Q: Can I use this without installing?**
+A: Yes! Use `npx nanobanana-cli [command]` to run without global installation.
+
+---
+
+## 🐛 Troubleshooting
+
+### API Key Not Found
+```bash
+# Make sure your API key is set
+echo $GEMINI_API_KEY
+
+# If empty, set it again
+export GEMINI_API_KEY=your_api_key_here
+```
+
+### Images Not Generating
+- Check your API key is valid at [Google AI Studio](https://aistudio.google.com/app/apikey)
+- Verify you haven't exceeded free tier limits
+- Try a simpler prompt first
+
+### Command Not Found
+```bash
+# If 'nb' command not found after global install
+npm list -g nanobanana-cli
+
+# Try reinstalling
+npm install -g nanobanana-cli --force
+```
+
+### Sharp Library Errors (macOS M1/M2)
+```bash
+# Reinstall sharp with native bindings
+npm rebuild sharp
+```
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions! Here's how you can help:
+
+- 🐛 **Report bugs** at [GitHub Issues](https://github.com/dipendra-sharma/nanobanana-cli/issues)
+- 💡 **Suggest features** or improvements
+- 📖 **Improve documentation**
+- ⭐ **Star the repo** if you find it useful!
+
+---
+
+## 📄 License
+
+MIT © [Dipendra Sharma](https://github.com/dipendra-sharma)
+
+---
+
+## 🙏 Acknowledgements
+
+This project was inspired by [nanobanana](https://github.com/gemini-cli-extensions/nanobanana) by the Gemini CLI Extensions community.
+
+Developed with assistance from [Claude Code](https://claude.com/claude-code), Anthropic's AI-powered coding assistant.
+
+**Built with:**
+- [Google Gemini API](https://ai.google.dev/) - AI image generation
 - [Bun](https://bun.sh) - Fast TypeScript runtime
-- [Google Gen AI SDK](https://www.npmjs.com/package/@google/genai) - Gemini API client
 - [Sharp](https://sharp.pixelplumbing.com/) - High-performance image processing
 - [Commander.js](https://github.com/tj/commander.js) - CLI framework
-- [Ora](https://github.com/sindresorhus/ora) - Terminal spinners
-- [Chalk](https://github.com/chalk/chalk) - Terminal styling
+
+---
+
+## 🌟 Show Your Support
+
+If you find **nb** useful, please:
+- ⭐ Star this repo on [GitHub](https://github.com/dipendra-sharma/nanobanana-cli)
+- 📦 Share it on [npm](https://www.npmjs.com/package/nanobanana-cli)
+- 🐦 Tweet about it
+- 💬 Tell your friends!
+
+---
+
+**Made with ❤️ for developers, designers, and creators**
+
+[Report Bug](https://github.com/dipendra-sharma/nanobanana-cli/issues) · [Request Feature](https://github.com/dipendra-sharma/nanobanana-cli/issues) · [Documentation](https://github.com/dipendra-sharma/nanobanana-cli#readme)
