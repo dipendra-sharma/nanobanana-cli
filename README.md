@@ -15,7 +15,7 @@
 - **Free to Use** - Leverage Google's Gemini API (free tier available)
 - **Lightning Fast** - Powered by Gemini 2.5 Flash Image model
 - **8 Specialized Commands** - Generate, edit, restore, icons, patterns, stories, diagrams, and more
-- **Smart Image Processing** - Built-in WebP conversion, compression, and resizing
+- **Smart Image Processing** - Built-in WebP conversion and quality optimization
 - **Natural Language** - Just describe what you want in plain English
 - **10+ Art Styles** - Photorealistic, watercolor, anime, pixel-art, and more
 - **Multiple Aspect Ratios** - Perfect for any use case from social media to print
@@ -87,7 +87,7 @@ Create stunning AI images from text descriptions with style options and aspect r
 nb generate "sunset over mountains"
 
 # Generate multiple images at once
-nb generate "futuristic robot" --count 4
+nb generate "futuristic robot" --num-images 4
 
 # Apply artistic styles
 nb generate "forest landscape" --style watercolor
@@ -101,7 +101,7 @@ nb generate "instagram post" --aspect-ratio 1:1
 
 # Advanced: combine all options
 nb generate "cyberpunk street scene at night" \
-  --count 3 \
+  --num-images 3 \
   --style digital-art \
   --aspect-ratio 16:9 \
   --format webp \
@@ -112,7 +112,7 @@ nb generate "cyberpunk street scene at night" \
 `photorealistic`, `watercolor`, `oil-painting`, `anime`, `sketch`, `digital-art`, `3d-render`, `pixel-art`, `minimalist`, `abstract`
 
 **Aspect Ratios:**
-`1:1`, `16:9`, `9:16`, `4:3`, `3:4`, `21:9`, `9:21`, `3:2`, `2:3`
+`1:1`, `2:3`, `3:2`, `4:3`, `5:4`, `9:16`, `16:9`, `21:9`
 
 ---
 
@@ -139,8 +139,7 @@ nb edit input.png "change the sky to sunset" --mask sky-mask.png
 # Save optimized for web
 nb edit photo.jpg "enhance colors and contrast" \
   --format webp \
-  --quality 80 \
-  --resize 1920x1080
+  --quality 80
 ```
 
 ---
@@ -215,8 +214,7 @@ nb pattern "abstract watercolor splash" --tileable false
 nb pattern "circuit board design" \
   --colors "green,black" \
   --format webp \
-  --quality 75 \
-  --resize 512x512
+  --quality 75
 ```
 
 Great for: Website backgrounds, textile design, game assets, social media
@@ -289,7 +287,7 @@ Can't remember the exact command? Just describe what you want!
 # The AI will figure out the best approach
 nb "create a beautiful sunset landscape"
 nb "make a logo with a rocket ship"
-nb "generate 3 images of a futuristic robot"
+nb "generate a futuristic robot"
 nb "photorealistic mountain scenery at golden hour"
 ```
 
@@ -304,13 +302,13 @@ nb "photorealistic mountain scenery at golden hour"
 
 ### For Developers
 - **App Icons**: `nb icon "clean todo app icon" --sizes 256,512,1024`
-- **Placeholder Images**: `nb generate "user avatar placeholder" --count 10`
+- **Placeholder Images**: `nb generate "user avatar placeholder" --num-images 10`
 - **UI Mockups**: `nb generate "modern dashboard interface" --style minimalist`
 
 ### For Designers
-- **Concept Art**: `nb generate "sci-fi vehicle design" --style digital-art --count 5`
+- **Concept Art**: `nb generate "sci-fi vehicle design" --style digital-art --num-images 5`
 - **Patterns**: `nb pattern "art deco geometric" --colors "gold,black,white"`
-- **Mood Boards**: `nb generate "cozy cafe interior" --count 6 --style photorealistic`
+- **Mood Boards**: `nb generate "cozy cafe interior" --num-images 6 --style photorealistic`
 
 ### For Educators
 - **Diagrams**: `nb diagram "water cycle" --type flowchart`
@@ -336,23 +334,10 @@ nb generate "portrait" --format jpg --quality 85
 nb generate "logo" --format png --quality 90
 ```
 
-### Resize Images
-
-```bash
-# Resize to specific dimensions
-nb generate "wallpaper" --resize 1920x1080
-
-# Social media optimized
-nb generate "instagram post" --resize 1080x1080 --format webp --quality 80
-
-# Thumbnail generation
-nb generate "product photo" --resize 512x512 --format jpg --quality 75
-```
-
 ### File Size Examples
 
 - **Original PNG** (1024x1024): ~1.0 MB
-- **WebP Quality 75** (512x512): ~27 KB (97% smaller!)
+- **WebP Quality 75**: ~27 KB (97% smaller!)
 - **JPEG Quality 80** (1024x1024): ~100 KB
 
 ---
@@ -385,7 +370,7 @@ nb generate "logo" --output ./my-images
 ### Batch Generation
 ```bash
 # Generate multiple variations
-nb generate "logo concept" --count 10 --variations
+nb generate "logo concept" --num-images 10
 ```
 
 ### Consistent Results
@@ -400,7 +385,7 @@ nb generate "character design" --seed 42
 nb generate "hero image" \
   --format webp \
   --quality 75 \
-  --resize 1920x1080
+  --aspect-ratio 16:9
 ```
 
 ### Creative Prompts
@@ -422,7 +407,7 @@ A: Yes! Google offers a generous free tier for the Gemini API. Perfect for perso
 
 **Q: What image sizes can I generate?**
 
-A: The default size is 1024x1024, but you can resize to any dimension up to 4096x4096 using the `--resize` flag.
+A: Images are generated at different sizes based on aspect ratio. 1:1 generates 1024x1024, 16:9 generates 1344x768, etc. Use `--aspect-ratio` to control dimensions.
 
 **Q: Can I use generated images commercially?**
 
