@@ -59,7 +59,6 @@ export interface RestoreOptions {
 export interface IconOptions extends ImageProcessingOptions {
   prompt: string;
   sizes?: number[];
-  padding?: number;
   output?: string;
 }
 

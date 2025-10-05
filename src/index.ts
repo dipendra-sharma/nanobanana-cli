@@ -87,9 +87,8 @@ program
 program
   .command('icon <prompt>')
   .description('Generate app icons in multiple sizes')
-  .option('-s, --sizes <sizes>', 'comma-separated sizes (16,32,64,128,256,512)', '16,32,64,128,256,512')
+  .option('-s, --sizes <sizes>', 'comma-separated sizes (256,512,1024)', '256,512,1024')
   .option('-o, --output <dir>', 'output directory', './output')
-  .option('--padding <number>', 'padding around icon')
   .option('-f, --format <format>', 'output format (png, jpg, webp)', 'png')
   .option('-q, --quality <number>', 'image quality 1-100', '90')
   .action(async (prompt: string, options: any) => {
@@ -98,7 +97,6 @@ program
       prompt,
       sizes,
       output: options.output,
-      padding: options.padding ? parseInt(options.padding) : undefined,
       format: options.format,
       quality: parseInt(options.quality),
     });

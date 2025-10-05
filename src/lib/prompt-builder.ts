@@ -50,8 +50,8 @@ export class PromptBuilder {
     return 'Restore and enhance this image. Improve quality, reduce noise, fix artifacts, and enhance details while preserving the original content and composition.';
   }
 
-  static buildIconPrompt(basePrompt: string, size: number): string {
-    return `${basePrompt}, simple icon design, clean lines, professional, suitable for ${size}x${size}px, centered, transparent or white background`;
+  static buildIconPrompt(basePrompt: string): string {
+    return `${basePrompt}, simple icon design, clean lines, professional, centered, transparent or white background`;
   }
 
   static buildPatternPrompt(

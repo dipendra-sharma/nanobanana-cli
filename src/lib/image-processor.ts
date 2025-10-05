@@ -67,4 +67,22 @@ export class ImageProcessor {
   static validateQuality(quality: number): boolean {
     return quality >= 1 && quality <= 100;
   }
+
+  static async resizeImage(
+    inputBuffer: Buffer,
+    width: number,
+    height: number
+  ): Promise<Buffer> {
+    try {
+      return await sharp(inputBuffer)
+        .resize(width, height, {
+          fit: 'inside',
+          withoutEnlargement: false,
+        })
+        .toBuffer();
+    } catch (error: any) {
+      Logger.error(`Image resize failed: ${error.message}`);
+      throw error;
+    }
+  }
 }

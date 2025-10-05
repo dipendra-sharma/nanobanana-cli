@@ -177,14 +177,14 @@ Create professional app icons in multiple sizes instantly.
 nb icon "minimalist rocket logo"
 
 # Custom sizes
-nb icon "coffee cup app icon" --sizes 64,128,256,512
+nb icon "coffee cup app icon" --sizes 256,512
 
-# All common sizes
-nb icon "music note logo" --sizes 16,32,64,128,256,512,1024
+# All common sizes (default)
+nb icon "music note logo" --sizes 256,512,1024
 
 # Generate as WebP for modern platforms
 nb icon "mountain peak logo" \
-  --sizes 128,256,512 \
+  --sizes 256,512 \
   --format webp \
   --quality 90
 ```
