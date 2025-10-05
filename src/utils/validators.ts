@@ -32,7 +32,7 @@ export class Validators {
 
   static validateAspectRatio(ratio: string): ratio is AspectRatio {
     const validRatios: AspectRatio[] = [
-      '1:1', '16:9', '9:16', '4:3', '3:4', '21:9', '9:21', '3:2', '2:3'
+      '1:1', '2:3', '3:2', '4:3', '5:4', '9:16', '16:9', '21:9'
     ];
     return validRatios.includes(ratio as AspectRatio);
   }

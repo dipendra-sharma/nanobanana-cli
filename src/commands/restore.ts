@@ -43,7 +43,6 @@ export async function restoreCommand(options: RestoreOptions): Promise<void> {
     const processingOptions = {
       format: options.format,
       quality: options.imageQuality,
-      resize: options.resize,
     };
 
     const outputPath = await fileHandler.saveImage(

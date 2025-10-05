@@ -6,10 +6,6 @@ export type ImageFormat = 'png' | 'jpg' | 'jpeg' | 'webp';
 export interface ImageProcessingOptions {
   format?: ImageFormat;
   quality?: number;
-  resize?: {
-    width?: number;
-    height?: number;
-  };
 }
 
 export class ImageProcessor {
@@ -19,18 +15,6 @@ export class ImageProcessor {
   ): Promise<Buffer> {
     try {
       let pipeline = sharp(inputBuffer);
-
-      // Apply resize if specified
-      if (options.resize) {
-        const { width, height } = options.resize;
-        if (width || height) {
-          pipeline = pipeline.resize(width, height, {
-            fit: 'inside',
-            withoutEnlargement: false,
-          });
-          Logger.debug(`Resizing image to ${width || 'auto'}x${height || 'auto'}`);
-        }
-      }
 
       // Apply format conversion and quality
       const format = options.format || 'png';
@@ -82,12 +66,5 @@ export class ImageProcessor {
 
   static validateQuality(quality: number): boolean {
     return quality >= 1 && quality <= 100;
-  }
-
-  static validateResize(width?: number, height?: number): boolean {
-    if (!width && !height) return true;
-    if (width && (width < 1 || width > 4096)) return false;
-    if (height && (height < 1 || height > 4096)) return false;
-    return true;
   }
 }

@@ -1,4 +1,6 @@
-export type AspectRatio = '1:1' | '16:9' | '9:16' | '4:3' | '3:4' | '21:9' | '9:21' | '3:2' | '2:3';
+// Supported aspect ratios based on actual API testing
+// Note: 3:4 and 4:5 fail despite being in Gemini docs
+export type AspectRatio = '1:1' | '2:3' | '3:2' | '4:3' | '5:4' | '9:16' | '16:9' | '21:9';
 
 export type ImageStyle =
   | 'photorealistic'
@@ -25,10 +27,6 @@ export type ImageFormat = 'png' | 'jpg' | 'jpeg' | 'webp';
 export interface ImageProcessingOptions {
   format?: ImageFormat;
   quality?: number;
-  resize?: {
-    width?: number;
-    height?: number;
-  };
 }
 
 export interface GenerateOptions extends ImageProcessingOptions {
@@ -56,10 +54,6 @@ export interface RestoreOptions {
   denoise?: boolean;
   format?: ImageFormat;
   imageQuality?: number;
-  resize?: {
-    width?: number;
-    height?: number;
-  };
 }
 
 export interface IconOptions extends ImageProcessingOptions {

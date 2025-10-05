@@ -27,6 +27,7 @@ export class GeminiClient {
 
       const results: Array<{ imageBytes: string }> = [];
 
+      // Note: gemini-2.5-flash-image doesn't support candidateCount > 1
       // Generate images sequentially
       for (let i = 0; i < count; i++) {
         const response = await this.client.models.generateContent({
@@ -37,6 +38,14 @@ export class GeminiClient {
               parts: [{ text: prompt }],
             },
           ],
+          config: {
+            seed: options.seed,
+            imageConfig: options.aspectRatio
+              ? {
+                  aspectRatio: options.aspectRatio,
+                }
+              : undefined,
+          },
         });
 
         if (!response.candidates || !response.candidates[0]?.content?.parts) {
@@ -45,16 +54,8 @@ export class GeminiClient {
 
         // Extract image from response
         for (const part of response.candidates[0].content.parts) {
-          let imageBase64: string | undefined;
-
           if (part.inlineData?.data) {
-            imageBase64 = part.inlineData.data;
-          } else if (part.text && this.isValidBase64ImageData(part.text)) {
-            imageBase64 = part.text;
-          }
-
-          if (imageBase64) {
-            results.push({ imageBytes: imageBase64 });
+            results.push({ imageBytes: part.inlineData.data });
             break; // Only process first valid image per response
           }
         }
@@ -69,14 +70,6 @@ export class GeminiClient {
       Logger.error(`Image generation failed: ${error.message}`);
       throw error;
     }
-  }
-
-  private isValidBase64ImageData(data: string): boolean {
-    if (!data || data.length < 1000) {
-      return false;
-    }
-    const base64Regex = /^[A-Za-z0-9+/]*={0,2}$/;
-    return base64Regex.test(data);
   }
 
   async editImage(
@@ -122,16 +115,8 @@ export class GeminiClient {
 
       // Extract image from response
       for (const part of response.candidates[0].content.parts) {
-        let imageBase64: string | undefined;
-
         if (part.inlineData?.data) {
-          imageBase64 = part.inlineData.data;
-        } else if (part.text && this.isValidBase64ImageData(part.text)) {
-          imageBase64 = part.text;
-        }
-
-        if (imageBase64) {
-          return { imageBytes: imageBase64 };
+          return { imageBytes: part.inlineData.data };
         }
       }
 

@@ -40,7 +40,6 @@ export async function iconCommand(options: IconOptions): Promise<void> {
       const processingOptions = {
         format: options.format,
         quality: options.quality,
-        resize: options.resize || { width: size, height: size },
       };
 
       const filename = fileHandler.generateFileName(`nb-icon-${size}x${size}`, processingOptions.format || 'png');

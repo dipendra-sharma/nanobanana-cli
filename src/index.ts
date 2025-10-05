@@ -15,17 +15,6 @@ import pkg from '../package.json';
 
 const program = new Command();
 
-// Helper function to parse resize option
-function parseResize(resizeStr: string | undefined): { width?: number; height?: number } | undefined {
-  if (!resizeStr) return undefined;
-  const parts = resizeStr.toLowerCase().split('x');
-  if (parts.length !== 2) return undefined;
-  const width = parseInt(parts[0]);
-  const height = parseInt(parts[1]);
-  if (isNaN(width) || isNaN(height)) return undefined;
-  return { width, height };
-}
-
 program
   .name('nb')
   .description('nanobanana - AI-powered image generation CLI using Gemini')
@@ -34,7 +23,6 @@ program
 program
   .command('generate <prompt>')
   .description('Generate images from text prompt')
-  .option('-c, --count <number>', 'number of images to generate', '1')
   .option('-s, --style <style>', 'image style (photorealistic, watercolor, anime, etc.)')
   .option('-a, --aspect-ratio <ratio>', 'aspect ratio (1:1, 16:9, 9:16, etc.)')
   .option('-o, --output <dir>', 'output directory', './output')
@@ -42,11 +30,11 @@ program
   .option('--variations', 'generate variations of the same prompt', false)
   .option('-f, --format <format>', 'output format (png, jpg, webp)', 'png')
   .option('-q, --quality <number>', 'image quality 1-100', '90')
-  .option('--resize <size>', 'resize output (e.g., 512x512)')
+  .option('-n, --num-images <number>', 'number of images to generate', '1')
   .action(async (prompt: string, options: any) => {
     await generateCommand({
       prompt,
-      count: parseInt(options.count),
+      count: parseInt(options.numImages),
       style: options.style,
       aspectRatio: options.aspectRatio,
       output: options.output,
@@ -54,7 +42,6 @@ program
       variations: options.variations,
       format: options.format,
       quality: parseInt(options.quality),
-      resize: parseResize(options.resize),
     });
   });
 
@@ -66,7 +53,6 @@ program
   .option('--operation <type>', 'operation type (add, remove, modify)')
   .option('-f, --format <format>', 'output format (png, jpg, webp)', 'png')
   .option('-q, --quality <number>', 'image quality 1-100', '90')
-  .option('--resize <size>', 'resize output (e.g., 512x512)')
   .action(async (input: string, prompt: string, options: any) => {
     await editCommand({
       input,
@@ -76,7 +62,6 @@ program
       operation: options.operation,
       format: options.format,
       quality: parseInt(options.quality),
-      resize: parseResize(options.resize),
     });
   });
 
@@ -88,7 +73,6 @@ program
   .option('--denoise', 'focus on noise reduction', false)
   .option('-f, --format <format>', 'output format (png, jpg, webp)', 'png')
   .option('--image-quality <number>', 'image quality 1-100', '90')
-  .option('--resize <size>', 'resize output (e.g., 512x512)')
   .action(async (input: string, options: any) => {
     await restoreCommand({
       input,
@@ -97,7 +81,6 @@ program
       denoise: options.denoise,
       format: options.format,
       imageQuality: parseInt(options.imageQuality),
-      resize: parseResize(options.resize),
     });
   });
 
@@ -130,7 +113,6 @@ program
   .option('--colors <colors>', 'comma-separated color palette')
   .option('-f, --format <format>', 'output format (png, jpg, webp)', 'png')
   .option('-q, --quality <number>', 'image quality 1-100', '90')
-  .option('--resize <size>', 'resize output (e.g., 512x512)')
   .action(async (prompt: string, options: any) => {
     const colors = options.colors ? options.colors.split(',').map((c: string) => c.trim()) : undefined;
     await patternCommand({
@@ -141,7 +123,6 @@ program
       colors,
       format: options.format,
       quality: parseInt(options.quality),
-      resize: parseResize(options.resize),
     });
   });
 
@@ -154,7 +135,6 @@ program
   .option('--style-consistency', 'maintain consistent style across scenes', true)
   .option('-f, --format <format>', 'output format (png, jpg, webp)', 'png')
   .option('-q, --quality <number>', 'image quality 1-100', '90')
-  .option('--resize <size>', 'resize output (e.g., 512x512)')
   .action(async (prompt: string, options: any) => {
     await storyCommand({
       prompt,
@@ -164,7 +144,6 @@ program
       styleConsistency: options.styleConsistency,
       format: options.format,
       quality: parseInt(options.quality),
-      resize: parseResize(options.resize),
     });
   });
 
@@ -176,7 +155,6 @@ program
   .option('--labeled', 'include labels and annotations', true)
   .option('-f, --format <format>', 'output format (png, jpg, webp)', 'png')
   .option('-q, --quality <number>', 'image quality 1-100', '90')
-  .option('--resize <size>', 'resize output (e.g., 512x512)')
   .action(async (prompt: string, options: any) => {
     await diagramCommand({
       prompt,
@@ -185,13 +163,12 @@ program
       labeled: options.labeled,
       format: options.format,
       quality: parseInt(options.quality),
-      resize: parseResize(options.resize),
     });
   });
 
 program
   .argument('[prompt...]', 'natural language prompt')
-  .option('-c, --count <number>', 'number of images', '1')
+  .option('-n, --num-images <number>', 'number of images', '1')
   .option('-o, --output <dir>', 'output directory', './output')
   .action(async (promptParts: string[], options: any) => {
     if (promptParts.length === 0) {
@@ -200,7 +177,7 @@ program
     }
     const prompt = promptParts.join(' ');
     await naturalLanguageCommand(prompt, {
-      count: parseInt(options.count),
+      count: parseInt(options.numImages),
       output: options.output,
     });
   });

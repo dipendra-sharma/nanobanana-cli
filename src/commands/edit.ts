@@ -41,7 +41,6 @@ export async function editCommand(options: EditOptions): Promise<void> {
     const processingOptions = {
       format: options.format,
       quality: options.quality,
-      resize: options.resize,
     };
 
     const outputPath = await fileHandler.saveImage(

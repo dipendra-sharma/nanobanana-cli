@@ -9,14 +9,11 @@ import { Logger } from '../utils/logger';
 export async function storyCommand(options: StoryOptions): Promise<void> {
   try {
     Validators.validatePrompt(options.prompt);
-
-    if (options.scenes < 2 || options.scenes > 8) {
-      throw new Error('Number of scenes must be between 2 and 8');
-    }
+    Validators.validateCount(options.scenes);
 
     if (options.aspectRatio && !Validators.validateAspectRatio(options.aspectRatio)) {
       throw new Error(
-        `Invalid aspect ratio: ${options.aspectRatio}. Valid options: 1:1, 16:9, 9:16, 4:3, 3:4, 21:9, 9:21, 3:2, 2:3`
+        `Invalid aspect ratio: ${options.aspectRatio}. Valid options: 1:1, 2:3, 3:2, 4:3, 5:4, 9:16, 16:9, 21:9`
       );
     }
 
@@ -48,7 +45,6 @@ export async function storyCommand(options: StoryOptions): Promise<void> {
       const processingOptions = {
         format: options.format,
         quality: options.quality,
-        resize: options.resize,
       };
 
       const filename = fileHandler.generateFileName(`nb-story-scene-${i + 1}`, processingOptions.format || 'png');

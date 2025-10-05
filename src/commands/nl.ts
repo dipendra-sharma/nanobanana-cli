@@ -11,12 +11,13 @@ export async function naturalLanguageCommand(
   try {
     Validators.validatePrompt(prompt);
 
+    const count = options.count || 1;
+    Validators.validateCount(count);
+
     const spinner = ora('Processing natural language request...').start();
 
     const client = new GeminiClient();
     const fileHandler = new FileHandler(options.output);
-
-    const count = options.count || 1;
 
     const images = await client.generateImages(prompt, {
       numberOfImages: count,

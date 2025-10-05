@@ -162,7 +162,7 @@ output/
 
 **Automated CI/CD via GitHub Actions:**
 - `.github/workflows/ci.yml`: Type check + build on PR/push
-- `.github/workflows/publish.yml`: **Automated npm publish triggered by version tags**
+- `.github/workflows/publish.yml`: **Automated npm publish triggered by GitHub releases**
 
 **IMPORTANT**: Publishing is fully automated. Do NOT run `npm publish` manually.
 
@@ -173,18 +173,18 @@ output/
 git add package.json README.md
 git commit -m "chore: release v0.x.x"
 
-# 3. Create and push version tag (triggers auto-publish)
-git tag v0.x.x
+# 3. Push changes
 git push origin main
-git push origin v0.x.x
+
+# 4. Create GitHub release (use gh CLI or web UI)
+gh release create v0.x.x --title "v0.x.x" --notes "Release notes here"
 
 # GitHub Actions will automatically:
 # - Run typecheck and build
-# - Publish to npm registry
-# - Create GitHub release
+# - Publish to npm registry with provenance
 ```
 
-**Never manually publish** - The CI pipeline handles everything when you push a version tag.
+**Never manually publish** - The CI pipeline handles everything when you create a GitHub release.
 
 ## Common Development Scenarios
 

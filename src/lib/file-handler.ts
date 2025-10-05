@@ -1,8 +1,8 @@
 import { existsSync, mkdirSync, writeFileSync, readFileSync } from 'fs';
 import { join, dirname, basename, extname } from 'path';
-import type { ImageGenerationResult, ImageProcessingOptions } from '../types';
+import type { ImageGenerationResult } from '../types';
 import { Logger } from '../utils/logger';
-import { ImageProcessor } from './image-processor';
+import { ImageProcessor, type ImageProcessingOptions } from './image-processor';
 
 export class FileHandler {
   private outputDir: string;
@@ -42,7 +42,7 @@ export class FileHandler {
     let buffer: Buffer;
 
     // Process image if options provided
-    if (processingOptions && (processingOptions.format || processingOptions.quality || processingOptions.resize)) {
+    if (processingOptions && (processingOptions.format || processingOptions.quality)) {
       buffer = await ImageProcessor.convertFromBase64(imageBytes, processingOptions);
     } else {
       buffer = Buffer.from(imageBytes, 'base64');

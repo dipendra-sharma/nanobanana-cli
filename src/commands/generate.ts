@@ -15,7 +15,7 @@ export async function generateCommand(options: GenerateOptions): Promise<void> {
 
     if (options.aspectRatio && !Validators.validateAspectRatio(options.aspectRatio)) {
       throw new Error(
-        `Invalid aspect ratio: ${options.aspectRatio}. Valid options: 1:1, 16:9, 9:16, 4:3, 3:4, 21:9, 9:21, 3:2, 2:3`
+        `Invalid aspect ratio: ${options.aspectRatio}. Valid options: 1:1, 2:3, 3:2, 4:3, 5:4, 9:16, 16:9, 21:9`
       );
     }
 
@@ -44,7 +44,6 @@ export async function generateCommand(options: GenerateOptions): Promise<void> {
     const processingOptions = {
       format: options.format,
       quality: options.quality,
-      resize: options.resize,
     };
 
     const paths = await fileHandler.saveImages(images, 'nb-generate', metadata, processingOptions);
