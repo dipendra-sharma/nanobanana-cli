@@ -5,6 +5,24 @@ All notable changes to nanobanana-cli will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.1] - 2025-10-05
+
+### Fixed
+- **Icon command now generates correct sizes** - Icons are properly resized to match requested dimensions (e.g., 64x64, 256x256, 512x512) instead of all being 1024x1024
+- Removed non-functional `--padding` option from icon command
+- Fixed Commander v14 compatibility by removing duplicate `-V` version flag
+
+### Changed
+- **Updated default icon sizes** - Changed from 6 sizes (16,32,64,128,256,512) to 3 practical sizes (256,512,1024)
+- Upgraded `commander` from 12.1.0 to 14.0.1
+- Upgraded `ora` from 8.2.0 to 9.0.0
+- Updated package homepage URL to npm package page
+- Added npm downloads badge to README
+
+### Added
+- `ImageProcessor.resizeImage()` method for icon-specific resizing
+- npm package link to README
+
 ## [0.2.0] - 2025-10-05
 
 ### Breaking Changes
@@ -61,6 +79,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Automatic metadata saving
 - CLI built with Commander.js and Bun
 
+[0.2.1]: https://github.com/dipendra-sharma/nanobanana-cli/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/dipendra-sharma/nanobanana-cli/compare/v0.1.4...v0.2.0
 [0.1.4]: https://github.com/dipendra-sharma/nanobanana-cli/compare/v0.1.2...v0.1.4
 [0.1.2]: https://github.com/dipendra-sharma/nanobanana-cli/compare/v0.1.1...v0.1.2
