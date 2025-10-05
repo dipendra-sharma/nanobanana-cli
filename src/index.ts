@@ -18,7 +18,7 @@ const program = new Command();
 program
   .name('nb')
   .description('nanobanana - AI-powered image generation CLI using Gemini')
-  .version(pkg.version, '-v, -V, --version', 'output the version number');
+  .version(pkg.version, '-v, --version', 'output the version number');
 
 program
   .command('generate <prompt>')

@@ -5,6 +5,7 @@
 > Generate, edit, and enhance images using Google's Gemini API with simple natural language commands.
 
 [![npm version](https://img.shields.io/npm/v/nanobanana-cli.svg)](https://www.npmjs.com/package/nanobanana-cli)
+[![npm downloads](https://img.shields.io/npm/dt/nanobanana-cli.svg)](https://www.npmjs.com/package/nanobanana-cli)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Powered by Gemini](https://img.shields.io/badge/Powered%20by-Google%20Gemini-blue.svg)](https://ai.google.dev/)
 
@@ -495,8 +496,8 @@ Developed with assistance from [Claude Code](https://claude.com/claude-code), An
 
 If you find **nb** useful, please:
 - Star this repo on [GitHub](https://github.com/dipendra-sharma/nanobanana-cli)
-- Share it on [npm](https://www.npmjs.com/package/nanobanana-cli)
-- Tweet about it
+- Check it out on [npm](https://www.npmjs.com/package/nanobanana-cli)
+- Share it with others
 - Tell your friends!
 
 ---
